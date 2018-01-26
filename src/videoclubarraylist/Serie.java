@@ -47,7 +47,7 @@ public class Serie extends Entregable {
     public String toString() {
         String texto = super.toString();
         texto += "\tNº temporadas: " + this.numTemporadas+ "\n";
-        texto += "\tCreador: " + this.creador;
+        texto += "\tCreador: " + this.creador+"\n";
         return texto;
     }
 }

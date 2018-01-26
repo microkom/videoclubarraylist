@@ -26,6 +26,20 @@ public class Main {
 
         Entregable i5 = new Serie("Blue bloods", 6, "Policia", "Victor");
         item.add(i5);
+        
+        Entregable i6 = new Videojuego("Mario Bros", 8, "Infantil", "Nintendo");
+        item.add(i6);
+        
+        Entregable i7 = new Videojuego("Ninja Gaiden", 6, "Accion", "Sega");
+        item.add(i7);
+        
+        Entregable i8 = new Videojuego("Street Fighter", 14, "Accion", "Nintendo");
+        item.add(i8);
+        
+        Entregable i9 = new Videojuego("Contra", 8, "Accion", "Nintendo");
+        item.add(i9);
+        
+        
 
         System.out.printf("El número de elementos es %d ", item.size());
 
@@ -39,16 +53,39 @@ public class Main {
 
         //Cuenta cuantas Series y Videojuegos hay entregados. Al contarlos, devuélvelos.
         Iterator<Entregable> it = item.iterator();
-        Entregable e;
-
+        Entregable e=null;
+        
+        int mayorS=0;String videoj="";
+        int mayorV=0;String series="";
         while (it.hasNext()) {
             e = it.next();
             System.out.println(e.toString());
-        }
+        
             if (e instanceof Serie){
                 contSeries++;
+                if (((Serie)e).getNumTemporadas()> mayorS) {
+                        mayorS=((Serie)e).getNumTemporadas();
+                        series=((Serie)e).getTitulo();
+                    }
             }
+            if (e instanceof Videojuego){
+                contVideoJuego++;
+                if (((Videojuego)e).getHoras()>mayorV){
+                    mayorV=((Videojuego)e).getHoras();
+                    videoj=((Videojuego)e).getTitulo();
+                }
+            }
+            /*
             
+        
+            */
+            
+         }
+        System.out.println("\tTotal de series: "+contSeries);
+        System.out.println("\tTotal de Videojuegos: "+contVideoJuego);
+        System.out.println("\tEl video juego que más horas tiene es "+videoj+" con "+mayorV+" horas");
+        System.out.println("\tLa serie que más temporadas tiene es "+series+" con "+mayorS+" temporadas");
+        
         /*
         
          
@@ -59,6 +96,7 @@ public class Main {
          */
 
     }
+    
 
 }
 /*

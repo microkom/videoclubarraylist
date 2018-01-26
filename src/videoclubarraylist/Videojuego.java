@@ -36,7 +36,7 @@ public class Videojuego extends Entregable {
     public String toString(){
         String texto = super.toString();
         texto += "\tHoras: " + this.horas+ "\n";
-        texto += "\tCompañia: " + this.company;
+        texto += "\tCompañia: " + this.company+"\n";
         return texto;
     }
 }
