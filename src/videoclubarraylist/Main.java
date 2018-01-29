@@ -7,6 +7,17 @@ public class Main {
 
     public static void main(String[] args) {
 
+        /*
+        
+
+
+for (int i = 0; i < 5; i++) {
+    System.out.format(leftAlignFormat, "some data" + i, i * i);
+}
+System.out.format("+-----------------+------+%n");
+         */
+        String leftAlignFormat = "| %-15s | %-4d |%n";
+
         ArrayList<Entregable> item = new ArrayList<Entregable>();
 
         Entregable i0 = new Serie("Los Simpsons", 20, "Infantil", "Matt Groening");
@@ -26,22 +37,20 @@ public class Main {
 
         Entregable i5 = new Serie("Blue bloods", 6, "Policia", "Victor");
         item.add(i5);
-        
+
         Entregable i6 = new Videojuego("Mario Bros", 8, "Infantil", "Nintendo");
         item.add(i6);
-        
+
         Entregable i7 = new Videojuego("Ninja Gaiden", 6, "Accion", "Sega");
         item.add(i7);
-        
+
         Entregable i8 = new Videojuego("Street Fighter", 14, "Accion", "Nintendo");
         item.add(i8);
-        
+
         Entregable i9 = new Videojuego("Contra", 8, "Accion", "Nintendo");
         item.add(i9);
-        
-        
 
-        System.out.printf("El número de elementos es %d ", item.size());
+        System.out.printf("\tEl número de elementos es %d \n\n", item.size());
 
         //variables de conteo
         int contSeries = 0;
@@ -53,39 +62,58 @@ public class Main {
 
         //Cuenta cuantas Series y Videojuegos hay entregados. Al contarlos, devuélvelos.
         Iterator<Entregable> it = item.iterator();
-        Entregable e=null;
-        
-        int mayorS=0;String videoj="";
-        int mayorV=0;String series="";
+        Entregable e = null;
+
+        int mayorS = 0;
+        String videoj = "";
+        int mayorV = 0;
+        String series = "";
+
+        Serie serieMax = null;
+        Videojuego videojuegoMax = null;
+
         while (it.hasNext()) {
             e = it.next();
             System.out.println(e.toString());
-        
-            if (e instanceof Serie){
-                contSeries++;
-                if (((Serie)e).getNumTemporadas()> mayorS) {
-                        mayorS=((Serie)e).getNumTemporadas();
-                        series=((Serie)e).getTitulo();
+
+            if (e instanceof Serie) {
+
+                if (e.isEntregado()) {
+                    contSeries++;
+                }
+
+                if (serieMax == null) {//modificar para manipular el objeto**************************************
+                    if (((Serie) e).getNumTemporadas() > mayorS) {
+                        mayorS = ((Serie) e).getNumTemporadas();
+                        series = ((Serie) e).getTitulo();
                     }
+                }
             }
-            if (e instanceof Videojuego){
-                contVideoJuego++;
-                if (((Videojuego)e).getHoras()>mayorV){
-                    mayorV=((Videojuego)e).getHoras();
-                    videoj=((Videojuego)e).getTitulo();
+            if (e instanceof Videojuego) {
+
+                if (e.isEntregado()) {
+                    contVideoJuego++;
+                }
+
+                if (videojuegoMax == null) {//modificar para manipular el objeto**************************************
+
+                    if (((Videojuego) e).getHoras() > mayorV) {
+                        mayorV = ((Videojuego) e).getHoras();
+                        videoj = ((Videojuego) e).getTitulo();
+                    }
                 }
             }
             /*
             
         
-            */
-            
-         }
-        System.out.println("\tTotal de series: "+contSeries);
-        System.out.println("\tTotal de Videojuegos: "+contVideoJuego);
-        System.out.println("\tEl video juego que más horas tiene es "+videoj+" con "+mayorV+" horas");
-        System.out.println("\tLa serie que más temporadas tiene es "+series+" con "+mayorS+" temporadas");
-        
+             */
+
+        }
+        System.out.println("\tTotal de series: " + contSeries);
+        System.out.println("\tTotal de Videojuegos: " + contVideoJuego);
+        System.out.println("\tEl video juego que más horas tiene es " + videoj + " con " + mayorV + " horas");
+        System.out.println("\tLa serie que más temporadas tiene es " + series + " con " + mayorS + " temporadas");
+
         /*
         
          
@@ -94,11 +122,17 @@ public class Main {
          Muestralos en pantalla con toda su información (usa el método
         toString()).
          */
-
     }
-    
 
+    public static void encabezadoTabla() {
+
+        System.out.printf("+-----------------+------+%n");
+        System.out.printf("| Column name     | ID   |%n");
+        System.out.printf("+-----------------+------+%n");
+    }
 }
+
+
 /*
 package electrodomestico;
 
@@ -204,4 +238,4 @@ public class Main {
     
     
 }
-*/
+ */
